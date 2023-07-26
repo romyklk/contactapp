@@ -48,7 +48,7 @@
             {% set pages = contacts.pages %}
             {% set currentPage = contacts.page %}
 
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-5">
             <button hx-trigger="revealed" hx-replace-url="true" class="btn btn-outline-primary" hx-get="?page={{currentPage + 1}}" hx-swap="outerHTML"> 
             
               <span class="htmx-indicator">

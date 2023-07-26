@@ -22,7 +22,7 @@ class ContactController extends AbstractController
 
 
         if($request->headers->get('HX-Request') === 'true'){
-            sleep(3);
+            sleep(4);
             return $this->render('contact/liste_htmx.html.twig', [
                 'contacts' => $contactRepository->paginate($page, 8),
             ]);
@@ -48,6 +48,11 @@ class ContactController extends AbstractController
     public function show(ContactRepository $contactRepository, int $id): Response
     {
         $contact = $contactRepository->find($id);
+
+        if(!$contact){
+            //Envoyer une réponse 404
+            throw $this->createNotFoundException("Le contact demandé n'existe pas");
+        }
 
         return $this->render('contact/show.html.twig', [
             'contact' => $contact

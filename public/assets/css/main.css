@@ -22,3 +22,8 @@ body {
 .htmx-request .htmx-indicator{
     display: inline-block !important;
 }
+
+                .error-container {
+                    text-align: center;
+                    margin-top: 100px;
+                }

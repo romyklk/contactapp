@@ -1,19 +1,10 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}
-{{ parent() }} | Tous les contacts
-{% endblock %}
-
-
-{% block body %}
-    <h1 class="text-center">Tous les contacts</h1>
-
     <div class="container">
            <div class="row justify-content-between">
            
             {% for contact in contacts.data %}
 
-            <div class="card my-2 bg-dark text-white" style="width: 20rem;">
+            <div class="card my-2 bg-dark text-white" style="width: 20rem;background: linear-gradient(to right, #182848, #4b6cb7)
+            ">
 
             <img src="{{contact.picture}}" class="mx-auto img-fluid picture rounded-circle" alt="profile_de_{{contact.firstname}}_{{contact.lastname }}">
 
@@ -48,31 +39,12 @@
             {% set pages = contacts.pages %}
             {% set currentPage = contacts.page %}
 
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+  <div class="d-grid gap-2 d-md-flex justify-content-md-start">
             <button hx-trigger="revealed" hx-replace-url="true" class="btn btn-outline-primary" hx-get="?page={{currentPage + 1}}" hx-swap="outerHTML"> 
-            
-              <span class="htmx-indicator">
+             <span class="htmx-indicator">
                 <div class="spinner-border" style="width: 1rem; height: 1rem;" role="status"></div>
               </span>
-
-            Voir htmx 
-            </button>
-
-            </div>
-
-
-            <div class="d-flex justify-content-center">
-                {{ include('partials/_pagination.html.twig') }}
-            </div>
-
-
-                
-
-            
-            
+            Voir htmx </button>
            </div>
 
     </div>
-  
-
-{% endblock %}

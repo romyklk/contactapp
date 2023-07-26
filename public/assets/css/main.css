@@ -13,3 +13,12 @@ body {
 .picture {
     border-radius: 50%;
 }
+
+
+.htmx-indicator{
+    display: none !important;
+}
+
+.htmx-request .htmx-indicator{
+    display: inline-block !important;
+}

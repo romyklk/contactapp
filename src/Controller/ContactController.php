@@ -18,9 +18,24 @@ class ContactController extends AbstractController
     {
         $page = $request->query->getInt('page', 1);
 
+        //Vérifier si la requête est faite par htmx
+
+
+        if($request->headers->get('HX-Request') === 'true'){
+            sleep(3);
+            return $this->render('contact/liste_htmx.html.twig', [
+                'contacts' => $contactRepository->paginate($page, 8),
+            ]);
+        }
+
+
+        if($page < 1){
+            return $this->redirectToRoute('app_contact', ['page' => 1]);
+        }
+
         //$contacts= $contactRepository->findAll();
 
-        $data = $contactRepository->paginate($page, 3);
+        $data = $contactRepository->paginate($page, 8);
         
         
         return $this->render('contact/liste.html.twig', [

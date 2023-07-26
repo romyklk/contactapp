@@ -18,3 +18,4 @@ Mini app symfony pour gérer les contacts.
 6.  `symfony server:start -d` 
 7.  `symfony open:local` 
 
+

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ parent() }} | Detail du contact
+{% endblock %}
+
+
+
+{% block body %}
+
+<div class="container">
+    {% if contact is not empty %}
+          <div class="row">
+    <div class="col-md-12 mb-5">
+      <h1 class="text-center">Détail du contact</h1>
+    </div>
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <div class="row no-gutters">
+        <div class="card-header">
+            <h4 class="card-title text-center">{{contact.firstname}} {{contact.lastname|upper}}</h4>
+        </div>
+          <div class="col-md-4">
+            <img src="{{contact.picture}}" class="card-img" alt="Profile Picture">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body d-flex align-items-center justify-content-center flex-column">
+              <p class="card-text">Adresse : {{contact.address}}</p>
+                <p class="card-text">Code postal : {{contact.zipcode}}</p>
+                <p class="card-text">Ville : {{contact.city}}</p>
+                <p class="card-text">Pays : {{contact.country}}</p>
+              <p class="card-text">Téléphone : {{contact.phone}}</p>
+              <p class="card-text">Email : {{contact.email}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="card-footer bg-dark text-center py-2">
+            <a href="{{path('app_contact')}}" class="btn btn-outline-secondary">Retour</a>
+        </div>
+    </div>
+  </div>
+        {% else %}
+        
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">Aucun contact</h1>
+            </div>
+            <div class="col-md-12 text-center">
+                <a href="{{path('app_contact')}}" class="btn btn-outline-dark">Retour</a>
+            </div>
+        </div>
+
+
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

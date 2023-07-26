@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ parent() }} | Tous les contacts
+{% endblock %}
+
+
+{% block body %}
+    <h1 class="text-center">Tous les contacts</h1>
+
+    <div class="container">
+           <div class="row justify-content-between">
+           
+            {% for contact in contacts.data %}
+
+            <div class="card my-2 bg-dark text-white" style="width: 20rem;">
+
+            <img src="{{contact.picture}}" class="mx-auto img-fluid picture rounded-circle" alt="profile_de_{{contact.firstname}}_{{contact.lastname }}">
+
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{contact.firstname}} {{contact.lastname|upper}}</h5>
+                    
+                {% if contact.sexe == 1 %}
+                    <h6>Sexe : <span class="rounded-pill bg-primary p-1"><i class="bi bi-gender-female text-white"></i></span></h6>
+                {% else %}
+                    <h6>Sexe : <span class="rounded-pill bg-primary p-1"><i class="bi bi-gender-male text-white"></i></span></h6>
+                {% endif %}
+                </div>
+                <ul class="list-group list-group-flush bg-dark">
+                    <li class="list-group-item text-white"><i class="bi bi-envelope-at-fill text-white"></i>
+                    {{contact.email}}
+                    </li>
+                    <li class="list-group-item text-white"><i class="bi bi-telephone-fill text-white"></i>
+                    {{contact.phone}}
+                    </li>
+                    <li class="list-group-item text-white"><i class="bi bi-geo-alt-fill text-white"></i>
+                    {{contact.address}} <br> {{contact.zipcode}} {{contact.city}}<br> {{contact.country}}
+                    </li>
+                </ul>
+                <div class="card-body">
+                    <a href="{{path('app_contact_show', {'id': contact.id})}}" class="btn btn-outline-secondary ms-3">Voir le contact</a>
+                </div>
+
+                </div>
+            {% endfor %}
+
+            {% set path = 'app_contact' %}
+            {% set pages = contacts.pages %}
+            {% set currentPage = contacts.page %}
+            {% include 'partials/_pagination.html.twig' %}
+           </div>
+
+    </div>
+  
+
+{% endblock %}

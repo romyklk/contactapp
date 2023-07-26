@@ -1,0 +1,64 @@
+{% if pages > 1 %}
+<div class="d-grid gap-2 col-6 mx-auto mt-3">
+  <div class="btn-toolbar" role="toolbar" aria-label="Barre d'outils avec groupes de boutons">
+    <div class="btn-group" role="group" aria-label="Boutons précédents et suivants">
+
+    {% if currentPage > 1 %}
+        <a href="{{ path(path, { page: currentPage - 1 }) }}" class="btn btn-secondary">
+        <span class="bi bi-chevron-left"></span> <!-- Icône "précédent" -->
+      </a>
+      {% else %}
+        <a href="{{ path(path, { page: currentPage - 1 }) }}" class="btn btn-secondary disabled">
+            <span class="bi bi-chevron-left"></span> <!-- Icône "précédent" -->
+        </a>
+    {% endif %}
+      
+      <div class="btn-group me-2" role="group" aria-label="Premier groupe">
+
+      {% set startPage = currentPage - 2 %}
+
+      {% set endPage = currentPage + 2 %}
+      
+      {% if startPage < 1 %}
+          {% set endPage = endPage + (1 - startPage) %}
+          {% set startPage = 1 %}
+      {% endif %}
+      {% if endPage > pages %}
+          {% set startPage = startPage - (endPage - pages) %}
+          {% set endPage = pages %}
+      {% endif %}
+      
+      {% if startPage > 1 %}
+        <a href="{{ path(path, { page: 1 }) }}" class="btn btn-secondary">1</a>
+        {% if startPage > 2 %}
+          <span class="btn btn-secondary disabled">...</span>
+        {% endif %}
+      {% endif %}
+      
+      {% for page in startPage..endPage %}
+        <a href="{{ path(path, { page: page }) }}" class="btn btn-secondary {{ (page == currentPage) ? 'bg-dark text-white' : '' }}">{{ page }}</a>
+      {% endfor %}
+      
+      {% if endPage < pages %}
+        {% if endPage < pages - 1 %}
+          <span class="btn btn-secondary disabled">...</span>
+        {% endif %}
+        <a href="{{ path(path, { page: pages }) }}" class="btn btn-secondary">{{ pages }}</a>
+      {% endif %}
+      
+      </div>
+
+      {% if currentPage < pages %}
+        <a href="{{ path(path, { page: currentPage + 1 }) }}" class="btn btn-secondary">
+        <span class="bi bi-chevron-right"></span> <!-- Icône "suivant" -->
+      </a>
+      {% else %}
+        <a href="{{ path(path, { page: currentPage + 1 }) }}" class="btn btn-secondary disabled">
+            <span class="bi bi-chevron-right"></span> <!-- Icône "suivant" -->
+        </a>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+{% endif %}

@@ -1,0 +1,15 @@
+body {
+    min-height: 100vh;
+    position: relative;
+   
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.picture {
+    border-radius: 50%;
+}

@@ -19,3 +19,5 @@ Mini app symfony pour gérer les contacts.
 7.  `symfony open:local` 
 
 
+## Mise en marche sur heroku
+faire la commande : `heroku ps:scale web=1` pour lancer le site sur heroku car 
